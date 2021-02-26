@@ -20,13 +20,16 @@ const MortgageCard = () => {
   const handleBlur = (event) => {
     const { id, value } = event.target;
 
-    dispatch(setMortgageInfo(id, parseFloat(value).toFixed(2)));
+    dispatch(setMortgageInfo(id, parseFloat(value || 0.00).toFixed(2)));
   };
 
   return (
     <div className={classNames(globalStyles.card, styles.card)}>
       <div className={globalStyles['card-body']}>
         <h5 className={globalStyles['card-title']}>Mortgage Info</h5>
+        <p>
+          Enter your mortgage details below.
+        </p>
         <Input
           type="currency"
           id="principal"

@@ -15,10 +15,13 @@ const Main = () => {
     dispatch(fetchFedRate());
   }, []);
 
-  const checkIfFilledIn = () => principal !== '' && period !== '' && rate !== '';
+  const shouldDisplayAmort = () => principal !== '' && period !== '' && rate !== '';
 
   return (
     <div className={globalStyles.container}>
+
+      <h1 className={styles.header}>Tally Take Home Assignment</h1>
+
       <div className={styles.main}>
         <div className={styles.card}>
           <MortgageCard />
@@ -29,7 +32,7 @@ const Main = () => {
         </div>
       </div>
 
-      {checkIfFilledIn() && <AmortizationTable />}
+      {shouldDisplayAmort() && <AmortizationTable />}
 
     </div>
   );

@@ -1,4 +1,20 @@
-
+.header {
+  text-align: center;
+}
 .col {
   text-align: right;
+}
+
+.wrapper {
+  padding: 15px;
+  overflow: scroll;
+}
+
+.message {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
 }

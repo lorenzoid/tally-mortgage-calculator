@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
 import globalStyles from '../../assets/global-styles/bootstrap.min.module.css';
+import Summary from '../Summary';
+import { formatToCurrency } from '../../utils';
 
 const AmortizationTable = () => {
   const { principal, rate, period } = useSelector((store) => store.mortgageInfo);
@@ -15,48 +17,61 @@ const AmortizationTable = () => {
     parseFloat(rate),
   );
 
-  return (
-    <div>
-      <h4>Amortization Schedule</h4>
-      <table className={classNames(globalStyles.table, globalStyles['table-bordered'], globalStyles['table-striped'])}>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Principal Paid</th>
-            <th>Interest Paid</th>
-            <th>Accrued Interest</th>
-            <th>Monthly Payment</th>
-            <th>Balance</th>
-          </tr>
-        </thead>
-        <tbody>
-          {getAmortizationSched().map((row) => (
-            <tr>
-              <td className={styles.col}>
-                {row.paymentNumber}
-              </td>
-              <td className={styles.col}>
-                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(row.principalPayment)}
-              </td>
-              <td className={styles.col}>
-                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(row.interestPayment)}
-              </td>
-              <td className={styles.col}>
-                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(row.accInterest)}
-              </td>
-              <td className={styles.col}>
-                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(row.payment)}
-              </td>
-              <td className={styles.col}>
-                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(row.principalBalance)}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+  // eslint-disable-next-line max-len
+  const canYouPayOffYourLoan = () => parseFloat(monthlySavings) * parseInt(savingsPeriod, 10) >= principal;
 
-  );
+  const renderResult = () => (canYouPayOffYourLoan() ? (
+    <h5 className={styles.message}>Congratulations! You can pay off your loan outright!</h5>
+  ) : (
+
+    <>
+
+      <Summary />
+
+      <div className={styles.wrapper}>
+        <h4>Amortization Schedule</h4>
+        <table className={classNames(globalStyles.table, globalStyles['table-bordered'], globalStyles['table-striped'])}>
+          <thead>
+            <tr>
+              <th className={styles.header}>Period</th>
+              <th className={styles.header}>Principal Paid</th>
+              <th className={styles.header}>Interest Paid</th>
+              <th className={styles.header}>Accrued Interest</th>
+              <th className={styles.header}>Monthly Payment</th>
+              <th className={styles.header}>Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {getAmortizationSched().map((row) => (
+              <tr>
+                <td className={styles.col}>
+                  {row.paymentNumber}
+                </td>
+                <td className={styles.col}>
+                  {formatToCurrency(row.principalPayment)}
+                </td>
+                <td className={styles.col}>
+                  {formatToCurrency(row.interestPayment)}
+                </td>
+                <td className={styles.col}>
+                  {formatToCurrency(row.accInterest)}
+                </td>
+                <td className={styles.col}>
+                  {formatToCurrency(row.payment)}
+                </td>
+                <td className={styles.col}>
+                  {formatToCurrency(row.principalBalance)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+
+  ));
+
+  return renderResult();
 };
 
 export default AmortizationTable;

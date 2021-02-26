@@ -19,13 +19,14 @@ const SavingsCard = () => {
   const handleBlur = (event) => {
     const { id, value } = event.target;
 
-    dispatch(setSavingsInfo(id, parseFloat(value).toFixed(2)));
+    dispatch(setSavingsInfo(id, parseFloat(value || 0.00).toFixed(2)));
   };
 
   return (
     <div className={classNames(globalStyles.card, styles.card)}>
       <div className={globalStyles['card-body']}>
         <h5 className={globalStyles['card-title']}>Savings Info</h5>
+        <p>How much can you set aside for a downpayment?</p>
         <Input
           type="currency"
           id="monthlySavings"
