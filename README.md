@@ -25,9 +25,12 @@ payment.
 
 ## To run the project please use the following  scripts
 
-1. To run in development mode `yarn start`
-2. To build a static html build for deployment `yarn build`. Serverless ready deployable directory will show up in the `/build` directory at the root.
-3. To test mortgage calculation math `yarn test`. There is only one unit test and it is for the `calculateMortgagePayment()` method as asked in the deliverables section of the document.
+IMPORTANT: Please install [json-server](https://github.com/typicode/json-server#getting-started). This is what I use to stub out the API as asked in the assignment notes. If the intention is to deploy live, changes will need to be made to the code to replace the `fetchFedRate()` action creator in `/src/reducers/mortgageInfoReducer.js`. 
+
+1. To run simulated api `yarn serve`. This serves up the hardcoded `fed_rate` for the interest rate portion.
+2. To run in development mode `yarn start`
+3. To build a static html build for deployment `yarn build`. Serverless ready deployable directory will show up in the `/build` directory at the root. NOTE: `fetchFedRate()` call will fail because it is hardcoded to fetch from the `json-server` package. See above.
+4. To test mortgage calculation math `yarn test`. There is only one unit test and it is for the `calculateMortgagePayment()` method as asked in the deliverables section of the document.
 
 ## Available Scripts
 
