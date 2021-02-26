@@ -25,7 +25,7 @@ payment.
 
 ## To run the project please use the following  scripts
 
-IMPORTANT: Please install [json-server](https://github.com/typicode/json-server#getting-started). This is what I use to stub out the API as asked in the assignment notes. If the intention is to deploy live, changes will need to be made to the code to replace the `fetchFedRate()` action creator in `/src/reducers/mortgageInfoReducer.js`. 
+IMPORTANT: Please install [json-server](https://github.com/typicode/json-server#getting-started) globally `npm install -g json-server`. This is what I use to stub out the API as asked in the assignment notes. If the intention is to deploy live, changes will need to be made to the code to replace the `fetchFedRate()` action creator in `/src/reducers/mortgageInfoReducer.js`. 
 
 1. To run simulated api `yarn serve`. This serves up the hardcoded `fed_rate` for the interest rate portion.
 2. To run in development mode `yarn start`
