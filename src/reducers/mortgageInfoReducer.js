@@ -38,7 +38,6 @@ export function fetchFedRate() {
     fetch('http://localhost:3001/data')
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         dispatch({
           type: SET_MORTGAGE_INFO,
           info: {

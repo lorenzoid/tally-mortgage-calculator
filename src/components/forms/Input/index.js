@@ -1,5 +1,7 @@
 import React from 'react';
-import { func, number, string } from 'prop-types';
+import {
+  func, number, oneOfType, string,
+} from 'prop-types';
 import classNames from 'classnames';
 import globalStyles from '../../../assets/global-styles/bootstrap.min.module.css';
 import styles from './index.module.css';
@@ -40,9 +42,9 @@ Input.propTypes = {
   type: string,
   onBlur: func,
   onChange: func,
-  value: string.isRequired,
+  value: oneOfType([string, number]).isRequired,
   // eslint-disable-next-line react/require-default-props
-  max: number,
+  max: string,
 };
 
 export default Input;

@@ -39,8 +39,9 @@ const AmortizationTable = () => {
             </tr>
           </thead>
           <tbody>
-            {getAmortizationSched().map((row) => (
-              <tr>
+            {getAmortizationSched().map((row, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <tr key={`row-${index}`}>
                 <td className={styles.col}>
                   {row.paymentNumber}
                 </td>
