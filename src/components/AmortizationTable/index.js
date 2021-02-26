@@ -25,11 +25,8 @@ const AmortizationTable = () => {
   ) : (
 
     <>
-
       <Summary />
-
       <div className={styles.wrapper}>
-        <h4>Amortization Schedule</h4>
         <table className={classNames(globalStyles.table, globalStyles['table-bordered'], globalStyles['table-striped'])}>
           <thead>
             <tr>
